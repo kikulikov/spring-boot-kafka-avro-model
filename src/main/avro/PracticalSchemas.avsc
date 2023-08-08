@@ -1,0 +1,59 @@
+[
+  {
+    "namespace": "io.confluent.model.avro",
+    "type": "record",
+    "name": "Book",
+    "fields": [
+      {
+        "name": "book_id",
+        "type": "string"
+      },
+      {
+        "name": "book_title",
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "namespace": "io.confluent.model.avro",
+    "type": "record",
+    "name": "Order",
+    "fields": [
+      {
+        "name": "order_id",
+        "type": "string"
+      },
+      {
+        "name": "book_id",
+        "type": "string"
+      },
+      {
+        "name": "quantity",
+        "type": "int"
+      },
+      {
+        "name": "card_number",
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "namespace": "io.confluent.model.avro",
+    "type": "record",
+    "name": "Count",
+    "fields": [
+      {
+        "name": "book_id",
+        "type": "string"
+      },
+      {
+        "name": "book_title",
+        "type": "string"
+      },
+      {
+        "name": "total",
+        "type": "int"
+      }
+    ]
+  }
+]

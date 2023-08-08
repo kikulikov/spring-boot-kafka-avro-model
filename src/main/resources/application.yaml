@@ -1,0 +1,14 @@
+logging.level.root: INFO
+
+application.topic.default.replicas: 1
+application.topic.default.partitions: 1
+
+---
+spring.kafka.admin.client-id: admin
+spring.main.web-application-type: none
+
+---
+spring:
+  profiles:
+#    active: remote-secured
+    active: local-plaintext

@@ -1,0 +1,6 @@
+logging.level.root: INFO
+
+
+#  props.getProperty("input.topic.name"),
+#  Integer.parseInt(props.getProperty("input.topic.partitions")),
+#  Short.parseShort(props.getProperty("input.topic.replication.factor")))
