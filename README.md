@@ -1,4 +1,4 @@
-# [Spring Boot + Kafka + Avro] Shopwindow
+# [Spring Boot + Kafka + Avro] Model Application
 
 ## Prerequisites
 
