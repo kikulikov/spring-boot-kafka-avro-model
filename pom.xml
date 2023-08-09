@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>io.confluent</groupId>
-    <artifactId>kafka-e2e-encryption-showcase</artifactId>
+    <artifactId>spring-boot-kafka-avro-model</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <repositories>

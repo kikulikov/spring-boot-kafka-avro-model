@@ -1,3 +1,4 @@
+private/
 *.pem
 HELP.md
 target/

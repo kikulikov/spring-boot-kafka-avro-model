@@ -1,26 +1,41 @@
-application.topic.books: plaintext-books
-application.topic.orders: plaintext-orders
-application.topic.counts: plaintext-counts
+application.topic.books: avro-books
+application.topic.orders: avro-orders
+application.topic.counts: avro-counts
 
 ---
 spring:
   config:
     activate:
-      on-profile: local-plaintext
+      on-profile: remote-secured
   kafka:
     properties:
-      bootstrap.servers: localhost:9092
-      schema.registry.url: http://localhost:8081
+      bootstrap.servers: ec2-16-171-177-219.eu-north-1.compute.amazonaws.com:9092
+      ssl.truststore.location: private/control_center.truststore.jks
+      ssl.truststore.password: confluenttruststorepass
+      ssl.keystore.location: private/control_center.keystore.jks
+      ssl.keystore.password: confluentkeystorestorepass
+      ssl.key.password: confluentkeystorestorepass
+      security.protocol: SSL
+      schema.registry.url: https://ec2-16-171-166-211.eu-north-1.compute.amazonaws.com:8081
+      schema.registry.ssl.truststore.location: private/control_center.truststore.jks
+      schema.registry.ssl.truststore.password: confluenttruststorepass
+      schema.registry.ssl.keystore.location: private/control_center.keystore.jks
+      schema.registry.ssl.keystore.password: confluentkeystorestorepass
+      schema.registry.ssl.key.password: confluentkeystorestorepass
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
-      client-id: local-plaintext-avro-producer
+      client-id: remote-secured-avro-producer
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
-      group-id: local-plaintext-avro-consumer
+      group-id: remote-secured-avro-consumer
       auto-offset-reset: latest
+      # By default, KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG is set to false,
+      # so your KafkaAvroDeserializer will produce a GenericData by default, and not SpecificData (POJO).
       properties.specific.avro.reader: true
-
-# By default, KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG is set to false,
-# so your KafkaAvroDeserializer will produce a GenericData by default, and not SpecificData (POJO).
+    streams:
+      application-id: remote-secured-streams
+      properties:
+        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
