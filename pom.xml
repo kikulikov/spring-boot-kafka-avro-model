@@ -6,13 +6,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.1</version>
+        <version>3.3.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>io.confluent</groupId>
     <artifactId>spring-boot-kafka-avro-model</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
 
     <repositories>
         <repository>
@@ -22,12 +22,12 @@
     </repositories>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <!-- managed dependencies -->
         <avro.version>1.10.2</avro.version>
-        <javafaker.version>1.0.2</javafaker.version>
-        <confluent.version>7.1.5</confluent.version>
-        <jackson.version>2.14.2</jackson.version>
+        <datafaker.version>2.4.2</datafaker.version>
+        <confluent.version>7.7.2</confluent.version>
+        <jackson.version>2.17.3</jackson.version>
         <reflections.version>0.10.2</reflections.version>
         <testcontainers.version>1.17.6</testcontainers.version>
     </properties>
@@ -80,11 +80,11 @@
             <artifactId>avro</artifactId>
             <version>${avro.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+        <!-- https://mvnrepository.com/artifact/net.datafaker/datafaker -->
         <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>${javafaker.version}</version>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>${datafaker.version}</version>
         </dependency>
         <!-- spring test -->
         <dependency>
@@ -121,18 +121,6 @@
             <version>${testcontainers.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>kafka</artifactId>
-            <version>${testcontainers.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>4.10.0</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -140,6 +128,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>io.confluent.streams.CountApplication</mainClass>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.avro</groupId>
